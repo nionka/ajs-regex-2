@@ -1,48 +1,25 @@
-/* eslint-disable no-unused-vars */
-import Validator from '../Validator';
+import transformNumber from '../app';
 
-test('checking of the class Validator for name', () => {
-  function createValidator(name) {
-    const test = new Validator(name);
-    return test.name;
-  }
+test('checking transformNumber', () => {
+  const test = transformNumber('8 (920) 55-55-55');
 
-  const expexted = 'Oleg11R';
+  const expexted = '+7920555555';
 
-  expect(createValidator('Oleg11R')).toEqual(expexted);
+  expect(test).toEqual(expexted);
 });
 
-test('checking of the class Validator for name', () => {
-  function createValidator(name) {
-    const test = new Validator(name);
-    return test.name;
-  }
+test('checking transformNumber', () => {
+  const test = transformNumber('+86 000 000 0000');
 
-  const expexted = 'Irina-123_br';
+  const expexted = '+860000000000';
 
-  expect(createValidator('Irina-123_br')).toEqual(expexted);
+  expect(test).toEqual(expexted);
 });
 
-test('checking of the class Validator for name', () => {
-  function createValidator() {
-    const test = new Validator('Oleg:125');
-  }
+test('checking transformNumber', () => {
+  const test = transformNumber('+7 960 000 00 00');
 
-  expect(createValidator).toThrowError(new Error('Имя не подходит'));
-});
+  const expexted = '+79600000000';
 
-test('checking of the class Validator for name', () => {
-  function createValidator() {
-    const test = new Validator('Oleg-1252');
-  }
-
-  expect(createValidator).toThrowError(new Error('Имя не подходит'));
-});
-
-test('checking of the class Validator for name', () => {
-  function createValidator() {
-    const test = new Validator('12Oleg-Pf');
-  }
-
-  expect(createValidator).toThrowError(new Error('Имя не подходит'));
+  expect(test).toEqual(expexted);
 });
